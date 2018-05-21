@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+
+<div id="app">
+
+    <h1>Kraft Dinner Simulator</h1>
+
+    <h2>Ingredients:</h2>
+    <ul class="js-ingredients"></ul>
+    <button class="js-pick">pick up kraft dinner</button>
+    <button class="js-open">open the box</button>
+
+    <h2>Locations:</h2>
+    <button class="js-look">look around the kitchen</button>
+    <ul class="js-locations"></ul>
+
+    <h2>Inventory:</h2>
+    <ul class="js-inventory"></ul>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="state-machine.js"></script>
+<script src="main.js"></script>
+<script>
+
+    function init(){
+        displayIngredients();
+        displayLocations();
+        displayInventory();
+    }
+
+    function displayIngredients(){
+        $('.js-ingredients').empty();
+        for(prop in game){
+            if(game[prop].type === 'ingredient'){
+                $('.js-ingredients').append('<li>'+game[prop].name+'</li>')
+            }
+        }
+    }
+
+    function displayInventory(){
+        $('.js-inventory').empty();
+        for(prop in game){
+            if(game[prop].state === 'inventory'){
+                $('.js-inventory').append('<li>'+game[prop].name+'</li>')
+            }
+        }
+    }
+
+    function displayLocations(){
+        $('.js-locations').empty();
+        for(prop in game){
+            if(game[prop].type === 'location'){
+                $('.js-locations').append('<li class="js-location" data-prop="'+prop+'">The '+game[prop].name+' is '+game[prop].state+'</li>')
+            }
+        }
+    }
+
+    $(document).on('click', '.js-look', function(){
+        initLocations();
+        $(this).hide();
+        init();
+    }).on('click', '.js-pick', function(){
+        game.kraftDinner.pickUp();
+        init();
+    }).on('click', '.js-open', function(){
+        game.kraftDinner.open();
+        init();
+    }).on('click', '.js-location', function(){
+        var prop = $(this).data('prop');
+        game[prop].step();
+        init();
+    });
+
+    init();
+
+</script>
+</body>
+</html>
