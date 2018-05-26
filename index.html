@@ -3,49 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-
+    <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
 
-<div id="app">
+<div class="container">
+    <div class="row">
 
-    <h1>Kraft Dinner Simulator</h1>
+        <div class="col-md-4" id="app">
 
-    <h2>Ingredients:</h2>
-    <ul class="js-ingredients"></ul>
-    <button class="js-pick">pick up kraft dinner</button>
-    <button class="js-open">open the box</button>
+            <h1>Kraft Dinner Simulator</h1>
 
-    <h2>Locations:</h2>
-    <button class="js-look">look around the kitchen</button>
-    <ul class="js-locations"></ul>
+            <!--<h2>Ingredients:</h2>-->
+            <!--<ul class="js-ingredients"></ul>-->
+            <!--<button class="js-pick">pick up kraft dinner</button>-->
+            <!--<button class="js-open">open the box</button>-->
 
-    <h2>Inventory:</h2>
-    <ul class="js-inventory"></ul>
+            <h2 class="js-locations-label" style="display:none">Locations:</h2>
+            <ul class="js-locations"></ul>
+
+            <h2>Inventory:</h2>
+            <ul class="js-inventory"></ul>
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="js-content"></div>
+        </div>
+    </div>
 
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="state-machine.js"></script>
 <script src="main.js"></script>
 <script>
 
+    appendToWindow('You\'re feeling hungry. <span class="js-look">Look around the kitchen.</span>');
+
     function init(){
-        displayIngredients();
+        //displayIngredients();
         displayLocations();
         displayInventory();
     }
 
-    function displayIngredients(){
-        $('.js-ingredients').empty();
-        for(prop in game){
-            if(game[prop].type === 'ingredient'){
-                $('.js-ingredients').append('<li>'+game[prop].name+'</li>')
-            }
-        }
-    }
+    // function displayIngredients(){
+    //     $('.js-ingredients').empty();
+    //     Object.keys(game).forEach(function(prop){
+    //         if(game[prop].type === 'ingredient'){
+    //             $('.js-ingredients').append('<li>'+game[prop].name+'</li>')
+    //         }
+    //     });
+    // }
 
     function displayInventory(){
         $('.js-inventory').empty();
@@ -60,14 +69,21 @@
         $('.js-locations').empty();
         for(prop in game){
             if(game[prop].type === 'location'){
-                $('.js-locations').append('<li class="js-location" data-prop="'+prop+'">The '+game[prop].name+' is '+game[prop].state+'</li>')
+                var txt =   '<li class="js-location" data-prop="'+prop+'">' +
+                                'The <span class="js-location-description">'+game[prop].name+'</span>' +
+                                ' is <span class="js-location-state">'+game[prop].state+'</span>' +
+                            '</li>';
+                $('.js-locations').append(txt)
             }
         }
     }
 
-    $(document).on('click', '.js-look', function(){
+    $(document).on('click', '.js-look', function(e){
         initLocations();
-        $(this).hide();
+        $('.js-locations-label').show();
+        $(e.currentTarget).hide();
+        var txt = 'You look around the kitchen. Your fridge is in the corner, humming. The stove is to your left. The cabinets are directly in front of you. The sink is to your right. Your favorite dinner bowl is sitting next to the sink.'
+        appendToWindow(txt);
         init();
     }).on('click', '.js-pick', function(){
         game.kraftDinner.pickUp();
@@ -75,9 +91,13 @@
     }).on('click', '.js-open', function(){
         game.kraftDinner.open();
         init();
-    }).on('click', '.js-location', function(){
-        var prop = $(this).data('prop');
+    }).on('click', '.js-location-state', function(){
+        var prop = $(this).parent().data('prop');
         game[prop].step();
+        init();
+    }).on('click', '.js-location-description', function(){
+        var prop = $(this).parent().data('prop');
+        describe(prop);
         init();
     });
 
