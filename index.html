@@ -14,11 +14,6 @@
 
             <h1>Kraft Dinner Simulator</h1>
 
-            <!--<h2>Ingredients:</h2>-->
-            <!--<ul class="js-ingredients"></ul>-->
-            <!--<button class="js-pick">pick up kraft dinner</button>-->
-            <!--<button class="js-open">open the box</button>-->
-
             <h2 class="js-locations-label" style="display:none">Locations:</h2>
             <ul class="js-locations"></ul>
 
@@ -36,25 +31,16 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="state-machine.js"></script>
+<script src="game.js"></script>
 <script src="main.js"></script>
 <script>
 
-    appendToWindow('You\'re feeling hungry. <span class="js-look">Look around the kitchen.</span>');
+    describe('home');
 
     function init(){
-        //displayIngredients();
         displayLocations();
         displayInventory();
     }
-
-    // function displayIngredients(){
-    //     $('.js-ingredients').empty();
-    //     Object.keys(game).forEach(function(prop){
-    //         if(game[prop].type === 'ingredient'){
-    //             $('.js-ingredients').append('<li>'+game[prop].name+'</li>')
-    //         }
-    //     });
-    // }
 
     function displayInventory(){
         $('.js-inventory').empty();
@@ -73,7 +59,7 @@
                                 'The <span class="js-location-description">'+game[prop].name+'</span>' +
                                 ' is <span class="js-location-state">'+game[prop].state+'</span>' +
                             '</li>';
-                $('.js-locations').append(txt)
+                $('.js-locations').append(txt);
             }
         }
     }
@@ -82,8 +68,7 @@
         initLocations();
         $('.js-locations-label').show();
         $(e.currentTarget).hide();
-        var txt = 'You look around the kitchen. Your fridge is in the corner, humming. The stove is to your left. The cabinets are directly in front of you. The sink is to your right. Your favorite dinner bowl is sitting next to the sink.'
-        appendToWindow(txt);
+        describe('kitchen');
         init();
     }).on('click', '.js-pick', function(){
         game.kraftDinner.pickUp();
@@ -91,12 +76,12 @@
     }).on('click', '.js-open', function(){
         game.kraftDinner.open();
         init();
-    }).on('click', '.js-location-state', function(){
-        var prop = $(this).parent().data('prop');
+    }).on('click', '.js-location-state', function(e){
+        var prop = $(e.currentTarget).parent().data('prop');
         game[prop].step();
         init();
-    }).on('click', '.js-location-description', function(){
-        var prop = $(this).parent().data('prop');
+    }).on('click', '.js-location-description', function(e){
+        var prop = $(e.currentTarget).parent().data('prop');
         describe(prop);
         init();
     });
