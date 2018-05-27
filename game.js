@@ -121,7 +121,8 @@ function cabinet() {
         data: {
             type: 'location',
             name: 'cabinet',
-            description: 'This kitchen does have a lot of cabinets, but you have a sneaking suspicion they\'re not attached to the wall.'
+            description: 'This kitchen does have a lot of cabinets, but you have a sneaking suspicion they\'re not attached to the wall.',
+            hasBeenOpened: false
         },
         transitions: [
             {name: 'step', from: 'closed', to: 'open'},
@@ -130,6 +131,10 @@ function cabinet() {
         methods: {
             onOpen: function () {
                 appendWindow('You opened the cabinet.');
+                if (!game.cabinet.hasBeenOpened) {
+                    game.cabinet.hasBeenOpened = true;
+                    initCabinetContents();
+                }
             },
             onClosed: function () {
                 appendWindow('You closed the cabinet.');
@@ -145,7 +150,8 @@ function fridge() {
         data: {
             type: 'location',
             name: 'fridge',
-            description: 'The top-freezer fridge that came with the apartment. Sometimes, if freezes your milk for no reason.'
+            description: 'The top-freezer fridge that came with the apartment. Sometimes, if freezes your milk for no reason.',
+            hasBeenOpened: false
         },
         transitions: [
             {name: 'step', from: 'closed', to: 'open'},
@@ -154,6 +160,10 @@ function fridge() {
         methods: {
             onOpen: function () {
                 appendWindow('You opened the fridge.');
+                if (!game.fridge.hasBeenOpened) {
+                    game.fridge.hasBeenOpened = true;
+                    initFridgeContents();
+                }
             },
             onClosed: function () {
                 appendWindow('You closed the fridge.');
@@ -169,7 +179,8 @@ function freezer() {
         data: {
             type: 'location',
             name: 'freezer',
-            description: 'The freezer. Mostly frozen veggies and geriatric bananas.'
+            description: 'The freezer. Mostly frozen veggies and geriatric bananas.',
+            hasBeenOpened: false
         },
         transitions: [
             {name: 'step', from: 'closed', to: 'open'},
@@ -178,6 +189,10 @@ function freezer() {
         methods: {
             onOpen: function () {
                 appendWindow('You opened the freezer.');
+                if (!game.freezer.hasBeenOpened) {
+                    game.freezer.hasBeenOpened = true;
+                    initFreezerContents();
+                }
             },
             onClosed: function () {
                 appendWindow('You closed the freezer.');
