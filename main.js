@@ -11,9 +11,9 @@ function initFreezerContents() {
 function listFreezerContents(){
     $('.js-freezer-contents').empty();
 
-    Object.keys(game).forEach(function(prop) {
+    Object.keys(game).forEach(function (prop) {
         if(game[prop].state === 'freezer') {
-            var item = '<li>' + game[prop].name + '</li>';
+            var item = '<li class="js-ingredient" data-prop="'+prop+'">' + game[prop].name + '</li>';
             $('.js-freezer-contents').append(item);
         }
     });
@@ -31,7 +31,7 @@ function listFridgeContents(){
 
     Object.keys(game).forEach(function(prop) {
         if(game[prop].state === 'refrigerator') {
-            var item = '<li>' + game[prop].name + '</li>';
+            var item = '<li class="js-ingredient"  data-prop="'+prop+'">' + game[prop].name + '</li>';
             $('.js-fridge-contents').append(item);
         }
     });
@@ -49,7 +49,7 @@ function listCabinetContents(){
 
     Object.keys(game).forEach(function(prop) {
         if(game[prop].state === 'cabinet') {
-            var item = '<li>' + game[prop].name + '</li>';
+            var item = '<li class="js-ingredient"  data-prop="'+prop+'">' + game[prop].name + '</li>';
             $('.js-cabinet-contents').append(item);
         }
     });

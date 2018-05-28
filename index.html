@@ -93,6 +93,10 @@
         var prop = $(e.currentTarget).parent().data('prop');
         describe(prop);
         init();
+    }).on('click', '.js-ingredient', function(e){
+        var prop = $(e.currentTarget).data('prop');
+        describe(prop);
+        init();
     });
 
     init();

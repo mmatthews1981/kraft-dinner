@@ -18,7 +18,8 @@ function pot() {
         init: 'cabinet',
         data: {
             type: 'vessel',
-            name: 'spaghetti pot'
+            name: 'spaghetti pot',
+            description: 'Your trusty three-gallon spaghetti pot.'
         },
         transitions: [
             {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
@@ -45,7 +46,8 @@ function colander() {
         init: 'cabinet',
         data: {
             type: 'vessel',
-            name: 'colander'
+            name: 'colander',
+            description: 'A cheap metal colander.'
         },
         transitions: [
             {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
@@ -216,7 +218,8 @@ function carrotsAndPeas() {
         init: 'freezer',
         data: {
             type: 'ingredient',
-            name: 'carrots and peas'
+            name: 'carrots and peas',
+            description: 'A bag of frozen carrots and peas.'
         },
         transitions: [
             {name: 'pickUp', from: 'freezer', to: 'inventory'},
@@ -239,7 +242,8 @@ function butter() {
         init: 'refrigerator',
         data: {
             type: 'ingredient',
-            name: 'butter'
+            name: 'butter',
+            description: 'A stick of butter.'
         },
         transitions: [
             {name: 'pickUp', from: 'refrigerator', to: 'inventory'},
@@ -262,7 +266,8 @@ function milk() {
         init: 'refrigerator',
         data: {
             type: 'ingredient',
-            name: 'milk'
+            name: 'milk',
+            description: 'A carton of milk. Luckily, it\'s not frozen today.'
         },
         transitions: [
             {name: 'pickUp', from: 'refrigerator', to: 'inventory'},
@@ -285,7 +290,8 @@ function cutHotDogs() {
         init: 'inventory',
         data: {
             type: 'ingredient',
-            name: 'cut up hot dogs'
+            name: 'cut up hot dogs',
+            description: 'A pile of hot dogs, cut into bite-sized chunks.'
         },
         transitions: [
             {name: 'addToPot', from: 'inventory', to: 'potContents'}
@@ -304,7 +310,8 @@ function hotDogs() {
         init: 'refrigerator',
         data: {
             type: 'ingredient',
-            name: 'hotdogs'
+            name: 'hotdogs',
+            description: 'A package of kosher hot dogs.'
         },
         transitions: [
             {name: 'pickUp', from: 'refrigerator', to: 'inventory'},
@@ -332,7 +339,8 @@ function noodles() {
         init: 'inventory',
         data: {
             type: 'ingredient',
-            name: 'elbow macaroni'
+            name: 'elbow macaroni',
+            description: 'Dry macaroni noodles.'
         },
         transitions: [
             {name: 'addToPot', from: 'inventory', to: 'potContents'}
@@ -351,7 +359,8 @@ function cheesePacket() {
         init: 'inventory',
         data: {
             type: 'ingredient',
-            name: 'packet of cheese powder'
+            name: 'packet of cheese powder',
+            description: 'A crinkled packet of neon orange cheese powder.'
         },
         transitions: [
             {name: 'open', from: 'inventory', to: 'openPacket'},
@@ -374,7 +383,8 @@ function kraftDinner() {
         init: 'cabinet',
         data: {
             type: 'ingredient',
-            name: 'box of Kraft Dinner'
+            name: 'box of Kraft Dinner',
+            description: 'A familiar blue box of Kraft Dinner.'
         },
         transitions: [
             {name: 'pickUp', from: 'cabinet', to: 'inventory'},
