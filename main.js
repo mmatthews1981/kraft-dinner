@@ -8,6 +8,17 @@ function initFreezerContents() {
     game.carrotsAndPeas = carrotsAndPeas();
 }
 
+function listFreezerContents(){
+    $('.js-freezer-contents').empty();
+
+    Object.keys(game).forEach(function(prop) {
+        if(game[prop].state === 'freezer') {
+            var item = '<li>' + game[prop].name + '</li>';
+            $('.js-freezer-contents').append(item);
+        }
+    });
+}
+
 function initFridgeContents() {
     'use strict';
     game.butter = butter();
@@ -15,11 +26,33 @@ function initFridgeContents() {
     game.hotDogs = hotDogs();
 }
 
+function listFridgeContents(){
+    $('.js-fridge-contents').empty();
+
+    Object.keys(game).forEach(function(prop) {
+        if(game[prop].state === 'refrigerator') {
+            var item = '<li>' + game[prop].name + '</li>';
+            $('.js-fridge-contents').append(item);
+        }
+    });
+}
+
 function initCabinetContents() {
     'use strict';
     game.pot = pot();
     game.colander = colander();
     game.kraftDinner = kraftDinner();
+}
+
+function listCabinetContents(){
+    $('.js-cabinet-contents').empty();
+
+    Object.keys(game).forEach(function(prop) {
+        if(game[prop].state === 'cabinet') {
+            var item = '<li>' + game[prop].name + '</li>';
+            $('.js-cabinet-contents').append(item);
+        }
+    });
 }
 
 function initNoodlesAndCheese() {

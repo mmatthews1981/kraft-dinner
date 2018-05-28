@@ -131,13 +131,16 @@ function cabinet() {
         methods: {
             onLeaveClosed: function () {
                 appendWindow('You opened the cabinet.');
+                $('.js-cabinet-label, .js-cabinet-contents').show();
                 if (!game.cabinet.hasBeenOpened) {
                     game.cabinet.hasBeenOpened = true;
                     initCabinetContents();
                 }
+                listCabinetContents();
             },
             onLeaveOpen: function () {
                 appendWindow('You closed the cabinet.');
+                $('.js-cabinet-label, .js-cabinet-contents').hide();
             }
         }
     });
@@ -158,15 +161,18 @@ function fridge() {
             {name: 'step', from: 'open', to: 'closed'}
         ],
         methods: {
-            onleaveClosed: function () {
+            onLeaveClosed: function () {
                 appendWindow('You opened the fridge.');
+                $('.js-fridge-label, .js-fridge-contents').show();
                 if (!game.fridge.hasBeenOpened) {
                     game.fridge.hasBeenOpened = true;
                     initFridgeContents();
                 }
+                listFridgeContents();
             },
             onLeaveOpen: function () {
                 appendWindow('You closed the fridge.');
+                $('.js-fridge-label, .js-fridge-contents').hide();
             }
         }
     });
@@ -189,13 +195,16 @@ function freezer() {
         methods: {
             onLeaveClosed: function () {
                 appendWindow('You opened the freezer.');
+                $('.js-freezer-label, .js-freezer-contents').show();
                 if (!game.freezer.hasBeenOpened) {
                     game.freezer.hasBeenOpened = true;
                     initFreezerContents();
                 }
+                listFreezerContents();
             },
             onLeaveOpen: function () {
                 appendWindow('You closed the freezer.');
+                $('.js-freezer-label, .js-freezer-contents').hide();
             }
         }
     });
