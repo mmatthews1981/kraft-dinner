@@ -80,11 +80,11 @@ function sink() {
             {name: 'step', from: 'on', to: 'off'}
         ],
         methods: {
-            onOn: function () {
+            onLeaveOff: function () {
                 appendWindow('You turn on the sink. The water is running.');
             },
-            onOff: function () {
-                appendWindow('You turn off the stove. The water stops running.');
+            onLeaveOn: function () {
+                appendWindow('You turn off the sink. The water stops running.');
             }
         }
     });
@@ -104,10 +104,10 @@ function stove() {
             {name: 'step', from: 'on', to: 'off'}
         ],
         methods: {
-            onOn: function () {
+            onLeaveOff: function () {
                 appendWindow('You turn on the stove. The element starts to glow.');
             },
-            onOff: function () {
+            onLeaveOn: function () {
                 appendWindow('You turn off the stove. The element stops glowing.');
             }
         }
@@ -129,14 +129,14 @@ function cabinet() {
             {name: 'step', from: 'open', to: 'closed'}
         ],
         methods: {
-            onOpen: function () {
+            onLeaveClosed: function () {
                 appendWindow('You opened the cabinet.');
                 if (!game.cabinet.hasBeenOpened) {
                     game.cabinet.hasBeenOpened = true;
                     initCabinetContents();
                 }
             },
-            onClosed: function () {
+            onLeaveOpen: function () {
                 appendWindow('You closed the cabinet.');
             }
         }
@@ -158,14 +158,14 @@ function fridge() {
             {name: 'step', from: 'open', to: 'closed'}
         ],
         methods: {
-            onOpen: function () {
+            onleaveClosed: function () {
                 appendWindow('You opened the fridge.');
                 if (!game.fridge.hasBeenOpened) {
                     game.fridge.hasBeenOpened = true;
                     initFridgeContents();
                 }
             },
-            onClosed: function () {
+            onLeaveOpen: function () {
                 appendWindow('You closed the fridge.');
             }
         }
@@ -187,14 +187,14 @@ function freezer() {
             {name: 'step', from: 'open', to: 'closed'}
         ],
         methods: {
-            onOpen: function () {
+            onLeaveClosed: function () {
                 appendWindow('You opened the freezer.');
                 if (!game.freezer.hasBeenOpened) {
                     game.freezer.hasBeenOpened = true;
                     initFreezerContents();
                 }
             },
-            onClosed: function () {
+            onLeaveOpen: function () {
                 appendWindow('You closed the freezer.');
             }
         }
