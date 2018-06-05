@@ -33,18 +33,18 @@ function pot() {
             description: 'Your trusty three-gallon spaghetti pot.'
         },
         transitions: [
-            {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
-            {name: 'potOnStove', from: 'inventory', to: 'stove'},
-            {name: 'potInSink', from: 'inventory', to: 'sink'}
+            {name: 'pickUp', from: '*', to: 'inventory'},
+            {name: 'ontoStove', from: '*', to: 'stove'},
+            {name: 'inSink', from: '*', to: 'sink'}
         ],
         methods: {
             onPickUp: function () {
                 appendWindow('You pick up the pot.');
             },
-            onPotOnStove: function () {
+            onOntoStove: function () {
                 appendWindow('You put the pot on the stove.');
             },
-            onPotInSink: function () {
+            onInSink: function () {
                 appendWindow('You put the pot in the sink.');
             }
         }
@@ -62,17 +62,17 @@ function colander() {
         },
         transitions: [
             {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
-            {name: 'colanderOnStove', from: 'inventory', to: 'stove'},
-            {name: 'colanderInSink', from: 'inventory', to: 'sink'}
+            {name: 'ontoStove', from: ['inventory', 'sink', 'cabinet'], to: 'stove'},
+            {name: 'inSink', from: ['inventory', 'stove', 'cabinet'], to: 'sink'}
         ],
         methods: {
             onPickUp: function () {
                 appendWindow('You pick up the colander.');
             },
-            onColanderOnStove: function () {
+            onOntoStove: function () {
                 appendWindow('You put the colander on the stove.');
             },
-            onColanderInSink: function () {
+            onInSink: function () {
                 appendWindow('You put the colander in the sink.');
             }
         }

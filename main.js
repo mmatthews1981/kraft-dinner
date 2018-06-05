@@ -101,6 +101,38 @@ function listCabinetContents() {
     }
 }
 
+function listSinkContents() {
+    'use strict';
+    $('.js-sink-contents').empty();
+
+    Object.keys(game).forEach(function (prop) {
+        if (game[prop].state === 'sink') {
+            var item = '<li class="js-item"  data-prop="' + prop + '">' + game[prop].name + '</li>';
+            $('.js-sink-contents').append(item);
+        }
+    });
+
+    if ($('.js-sink-contents').is(':empty')) {
+        $('.js-sink-contents').append('<li>A few stray drops of water.</li>');
+    }
+}
+
+function listStoveContents() {
+    'use strict';
+    $('.js-stove-contents').empty();
+
+    Object.keys(game).forEach(function (prop) {
+        if (game[prop].state === 'stove') {
+            var item = '<li class="js-item"  data-prop="' + prop + '">' + game[prop].name + '</li>';
+            $('.js-stove-contents').append(item);
+        }
+    });
+
+    if ($('.js-stove-contents').is(':empty')) {
+        $('.js-stove-contents').append('<li>A bit of grease splatter.</li>');
+    }
+}
+
 function initNoodlesAndCheese() {
     'use strict';
     game.noodles = noodles();
@@ -146,8 +178,16 @@ function describe(prop) {
         str += '  <span class="js-pickup" data-prop="' + prop + '">You can pick it up if you like.</span>';
     }
 
-    if(prop === 'kraftDinner' && game[prop].state === 'inventory') {
+    if (prop === 'kraftDinner' && game[prop].state === 'inventory') {
         str += ' <span class="js-open">You can open it if you like.</span>';
+    }
+
+    if (game[prop].type === 'vessel' && game[prop].state !== 'sink' ) {
+        str += ' <span class="js-into-sink" data-prop="' + prop + '">You can put it in the sink.</span>';
+    }
+
+    if (game[prop].type === 'vessel' && game[prop].state !== 'stove' ) {
+        str += ' <span class="js-onto-stove" data-prop="' + prop + '">You can put it  on the stove.</span>';
     }
     appendWindow(str);
 }

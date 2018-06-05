@@ -14,8 +14,14 @@
 
             <h1>Kraft Dinner Simulator</h1>
 
-            <h2 class="js-locations-label" style="display:none">Locations:</h2>
+            <h2 class="js-locations-label initially-hidden" style="display:none">Locations:</h2>
             <ul class="js-locations"></ul>
+
+            <h2 class="js-sink-label initially-hidden" style="display:none;">The sink contains:</h2>
+            <ul class="js-sink-contents initially-hidden" style="display:none;"></ul>
+
+            <h2 class="js-stove-label initially-hidden" style="display:none;">The stove contains:</h2>
+            <ul class="js-stove-contents initially-hidden" style="display:none;"></ul>
 
             <h2 class="js-cabinet-label" style="display:none;">The cabinet contains:</h2>
             <ul class="js-cabinet-contents" style="display:none"></ul>
@@ -49,13 +55,18 @@
     function init(){
         displayLocations();
         displayInventory();
+        listCabinetContents();
+        listFreezerContents();
+        listFridgeContents();
+        listSinkContents();
+        listStoveContents();
     }
 
 
 
     $(document).on('click', '.js-look', function(e){
         initLocations();
-        $('.js-locations-label').show();
+        $('.initially-hidden').show();
         $(e.currentTarget).hide();
         describe('kitchen');
         init();
@@ -80,15 +91,20 @@
     }).on('click', '.js-pickup', function(e){
         var prop = $(e.currentTarget).data('prop');
         game[prop].pickUp();
-        listCabinetContents();
-        listFreezerContents();
-        listFridgeContents();
         init();
     }).on('click', '.js-read', function(){
         appendWindow(game.emptyKraftDinnerBox.instructions);
     }).on('click', '.js-trash', function(){
         appendWindow(game.emptyKraftDinnerBox.trash);
         delete game.emptyKraftDinnerBox;
+        init();
+    }).on('click', '.js-into-sink', function(e){
+        var prop = $(e.currentTarget).data('prop');
+        game[prop].inSink();
+        init();
+    }).on('click', '.js-onto-stove', function(e){
+        var prop = $(e.currentTarget).data('prop');
+        game[prop].ontoStove();
         init();
     });
 
