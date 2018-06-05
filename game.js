@@ -18,7 +18,8 @@ function emptyKraftDinnerBox() {
         description: 'An open blue box. You can <span class="js-read">read it if you like</span> or <span class="js-trash">throw it away</span>.',
         state: 'inventory',
         name: 'open Kraft Dinner Box',
-        instructions: 'These are the instructions for making Kraft Dinner. I need to find a box and copy them, so for now just use your imagination.'
+        instructions: 'These are the instructions for making Kraft Dinner. I need to find a box and copy them, so for now just use your imagination.',
+        trash: 'You throw the empty box in the trash.'
     };
 }
 
