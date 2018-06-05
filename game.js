@@ -15,7 +15,7 @@ function kitchen() {
 function emptyKraftDinnerBox() {
     'use strict';
     return {
-        description: 'An open blue box. <span class="js-read">You can read it if you like.</span>',
+        description: 'An open blue box. You can <span class="js-read">read it if you like</span> or <span class="js-trash">throw it away</span>.',
         state: 'inventory',
         name: 'open Kraft Dinner Box',
         instructions: 'These are the instructions for making Kraft Dinner. I need to find a box and copy them, so for now just use your imagination.'

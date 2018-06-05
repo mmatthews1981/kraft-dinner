@@ -86,6 +86,10 @@
         init();
     }).on('click', '.js-read', function(){
         appendWindow(game.emptyKraftDinnerBox.instructions);
+    }).on('click', '.js-trash', function(){
+        appendWindow('You throw the empty box in the trash.');
+        delete game.emptyKraftDinnerBox;
+        init();
     });
 
     init();
