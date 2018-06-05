@@ -97,10 +97,12 @@
         var prop = $(e.currentTarget).data('prop');
         describe(prop);
         init();
-    }).on('click', '.js-pickup-cabinet', function(e){
+    }).on('click', '.js-pickup', function(e){
         var prop = $(e.currentTarget).data('prop');
         game[prop].pickUp();
         listCabinetContents();
+        listFreezerContents();
+        listFridgeContents();
         init();
     });
 

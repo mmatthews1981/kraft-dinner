@@ -19,7 +19,7 @@ function pot() {
         data: {
             type: 'vessel',
             name: 'spaghetti pot',
-            description: 'Your trusty three-gallon spaghetti pot. <span class="js-pickup-cabinet" data-prop="pot">You can pick it up if you like.</span>'
+            description: 'Your trusty three-gallon spaghetti pot. <span class="js-pickup" data-prop="pot">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
@@ -47,7 +47,7 @@ function colander() {
         data: {
             type: 'vessel',
             name: 'colander',
-            description: 'A cheap metal colander. <span class="js-pickup-cabinet" data-prop="colander">You can pick it up if you like.</span>'
+            description: 'A cheap metal colander. <span class="js-pickup" data-prop="colander">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
@@ -219,7 +219,7 @@ function carrotsAndPeas() {
         data: {
             type: 'ingredient',
             name: 'carrots and peas',
-            description: 'A bag of frozen carrots and peas.'
+            description: 'A bag of frozen carrots and peas. <span class="js-pickup" data-prop="carrotsAndPeas">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: 'freezer', to: 'inventory'},
@@ -243,7 +243,7 @@ function butter() {
         data: {
             type: 'ingredient',
             name: 'butter',
-            description: 'A stick of butter.'
+            description: 'A stick of butter.  <span class="js-pickup" data-prop="butter">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: 'refrigerator', to: 'inventory'},
@@ -267,7 +267,7 @@ function milk() {
         data: {
             type: 'ingredient',
             name: 'milk',
-            description: 'A carton of milk. Luckily, it\'s not frozen today.'
+            description: 'A carton of milk. Luckily, it\'s not frozen today.  <span class="js-pickup" data-prop="milk">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: 'refrigerator', to: 'inventory'},
@@ -311,7 +311,7 @@ function hotDogs() {
         data: {
             type: 'ingredient',
             name: 'hotdogs',
-            description: 'A package of kosher hot dogs.'
+            description: 'A package of kosher hot dogs.  <span class="js-pickup" data-prop="hotDogs">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: 'refrigerator', to: 'inventory'},
@@ -384,7 +384,7 @@ function kraftDinner() {
         data: {
             type: 'ingredient',
             name: 'box of Kraft Dinner',
-            description: 'A familiar blue box of Kraft Dinner. <span class="js-pickup-cabinet" data-prop="kraftDinner">You can pick it up if you like.</span>'
+            description: 'A familiar blue box of Kraft Dinner. <span class="js-pickup" data-prop="kraftDinner">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: 'cabinet', to: 'inventory'},

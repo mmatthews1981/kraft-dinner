@@ -17,6 +17,10 @@ function listFreezerContents(){
             $('.js-freezer-contents').append(item);
         }
     });
+
+    if ($('.js-freezer-contents').is(':empty')) {
+        $('.js-freezer-contents').append('<li>Nothing of particular interest to you.</li>');
+    }
 }
 
 function initFridgeContents() {
@@ -35,6 +39,10 @@ function listFridgeContents(){
             $('.js-fridge-contents').append(item);
         }
     });
+
+    if ($('.js-fridge-contents').is(':empty')) {
+        $('.js-fridge-contents').append('<li>Nothing of particular interest to you.</li>');
+    }
 }
 
 function initCabinetContents() {
@@ -54,7 +62,7 @@ function listCabinetContents(){
         }
     });
 
-    if ($('.js-cabinet-contents').is(':empty')){
+    if ($('.js-cabinet-contents').is(':empty')) {
         $('.js-cabinet-contents').append('<li>Nothing of particular interest to you.</li>');
     }
 }
