@@ -12,6 +12,15 @@ function kitchen() {
     };
 }
 
+function emptyKraftDinnerBox() {
+    'use strict';
+    return {
+        description: 'An open blue box. You can read it if you like.',
+        state: 'inventory',
+        name: 'open Kraft Dinner Box'
+    };
+}
+
 function pot() {
     'use strict';
     return new StateMachine({

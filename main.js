@@ -4,7 +4,7 @@ game.home = home();
 game.kitchen = kitchen();
 
 function displayInventory() {
-
+    'use strict';
     $('.js-inventory').empty();
 
     Object.keys(game).forEach(function (prop) {
@@ -19,6 +19,7 @@ function displayInventory() {
 }
 
 function displayLocations() {
+    'use strict';
 
     $('.js-locations').empty();
 
@@ -39,10 +40,11 @@ function initFreezerContents() {
 }
 
 function listFreezerContents() {
+    'use strict';
     $('.js-freezer-contents').empty();
 
     Object.keys(game).forEach(function (prop) {
-        if(game[prop].state === 'freezer') {
+        if (game[prop].state === 'freezer') {
             var item = '<li class="js-item" data-prop="' + prop + '">' + game[prop].name + '</li>';
             $('.js-freezer-contents').append(item);
         }
@@ -61,10 +63,11 @@ function initFridgeContents() {
 }
 
 function listFridgeContents() {
+    'use strict';
     $('.js-fridge-contents').empty();
 
     Object.keys(game).forEach(function (prop) {
-        if(game[prop].state === 'refrigerator') {
+        if (game[prop].state === 'refrigerator') {
             var item = '<li class="js-item"  data-prop="' + prop + '">' + game[prop].name + '</li>';
             $('.js-fridge-contents').append(item);
         }
@@ -83,6 +86,7 @@ function initCabinetContents() {
 }
 
 function listCabinetContents() {
+    'use strict';
     $('.js-cabinet-contents').empty();
 
     Object.keys(game).forEach(function (prop) {
@@ -101,6 +105,7 @@ function initNoodlesAndCheese() {
     'use strict';
     game.noodles = noodles();
     game.cheesePacket = cheesePacket();
+    game.emptyKraftDinnerBox = emptyKraftDinnerBox();
 }
 
 function initCutUpHotDogs() {
@@ -136,9 +141,13 @@ function appendWindow(str) {
 function describe(prop) {
     'use strict';
     var str = game[prop].description;
-    if( (game[prop].type === 'vessel' || game[prop].type === 'ingredient') &&
-        game[prop].state !== 'inventory') {
+    if ((game[prop].type === 'vessel' || game[prop].type === 'ingredient') &&
+            game[prop].state !== 'inventory') {
         str += '  <span class="js-pickup" data-prop="' + prop + '">You can pick it up if you like.</span>';
+    }
+
+    if(prop === 'kraftDinner' && game[prop].state === 'inventory') {
+        str += ' <span class="js-open">You can open it if you like.</span>';
     }
     appendWindow(str);
 }
