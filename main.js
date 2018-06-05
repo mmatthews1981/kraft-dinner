@@ -53,6 +53,10 @@ function listCabinetContents(){
             $('.js-cabinet-contents').append(item);
         }
     });
+
+    if ($('.js-cabinet-contents').is(':empty')){
+        $('.js-cabinet-contents').append('<li>Nothing of particular interest to you.</li>');
+    }
 }
 
 function initNoodlesAndCheese() {

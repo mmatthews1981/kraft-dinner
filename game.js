@@ -19,7 +19,7 @@ function pot() {
         data: {
             type: 'vessel',
             name: 'spaghetti pot',
-            description: 'Your trusty three-gallon spaghetti pot.'
+            description: 'Your trusty three-gallon spaghetti pot. <span class="js-pickup-cabinet" data-prop="pot">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
@@ -47,7 +47,7 @@ function colander() {
         data: {
             type: 'vessel',
             name: 'colander',
-            description: 'A cheap metal colander.'
+            description: 'A cheap metal colander. <span class="js-pickup-cabinet" data-prop="colander">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: ['cabinet', 'stove', 'sink'], to: 'inventory'},
@@ -384,7 +384,7 @@ function kraftDinner() {
         data: {
             type: 'ingredient',
             name: 'box of Kraft Dinner',
-            description: 'A familiar blue box of Kraft Dinner.'
+            description: 'A familiar blue box of Kraft Dinner. <span class="js-pickup-cabinet" data-prop="kraftDinner">You can pick it up if you like.</span>'
         },
         transitions: [
             {name: 'pickUp', from: 'cabinet', to: 'inventory'},
