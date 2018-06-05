@@ -84,6 +84,8 @@
         listFreezerContents();
         listFridgeContents();
         init();
+    }).on('click', '.js-read', function(){
+        appendWindow(game.emptyKraftDinnerBox.instructions);
     });
 
     init();
