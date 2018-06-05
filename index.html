@@ -51,27 +51,7 @@
         displayInventory();
     }
 
-    function displayInventory(){
-        $('.js-inventory').empty();
-        for(prop in game){
-            if(game[prop].state === 'inventory'){
-                $('.js-inventory').append('<li>'+game[prop].name+'</li>')
-            }
-        }
-    }
 
-    function displayLocations(){
-        $('.js-locations').empty();
-        for(prop in game){
-            if(game[prop].type === 'location'){
-                var txt =   '<li class="js-location" data-prop="'+prop+'">' +
-                                'The <span class="js-location-description">'+game[prop].name+'</span>' +
-                                ' is <span class="js-location-state">'+game[prop].state+'</span>' +
-                            '</li>';
-                $('.js-locations').append(txt);
-            }
-        }
-    }
 
     $(document).on('click', '.js-look', function(e){
         initLocations();
@@ -93,7 +73,7 @@
         var prop = $(e.currentTarget).parent().data('prop');
         describe(prop);
         init();
-    }).on('click', '.js-ingredient', function(e){
+    }).on('click', '.js-item', function(e){
         var prop = $(e.currentTarget).data('prop');
         describe(prop);
         init();

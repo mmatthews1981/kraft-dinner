@@ -3,17 +3,47 @@ var game = {};
 game.home = home();
 game.kitchen = kitchen();
 
+function displayInventory() {
+
+    $('.js-inventory').empty();
+
+    Object.keys(game).forEach(function (prop) {
+        if (game[prop].state === 'inventory') {
+            $('.js-inventory').append('<li class="js-item"  data-prop="' + prop + '">' + game[prop].name + '</li>');
+        }
+    });
+
+    if ($('.js-inventory').is(':empty')) {
+        $('.js-inventory').append('<li>You don\'t have anything on hand.</li>');
+    }
+}
+
+function displayLocations() {
+
+    $('.js-locations').empty();
+
+    Object.keys(game).forEach(function (prop) {
+        if (game[prop].type === 'location') {
+            var txt = '<li class="js-location" data-prop="' + prop + '">' +
+                    'The <span class="js-location-description">' + game[prop].name + '</span>' +
+                    ' is <span class="js-location-state">' + game[prop].state + '</span>' +
+                    '</li>';
+            $('.js-locations').append(txt);
+        }
+    });
+}
+
 function initFreezerContents() {
     'use strict';
     game.carrotsAndPeas = carrotsAndPeas();
 }
 
-function listFreezerContents(){
+function listFreezerContents() {
     $('.js-freezer-contents').empty();
 
     Object.keys(game).forEach(function (prop) {
         if(game[prop].state === 'freezer') {
-            var item = '<li class="js-ingredient" data-prop="'+prop+'">' + game[prop].name + '</li>';
+            var item = '<li class="js-item" data-prop="' + prop + '">' + game[prop].name + '</li>';
             $('.js-freezer-contents').append(item);
         }
     });
@@ -30,12 +60,12 @@ function initFridgeContents() {
     game.hotDogs = hotDogs();
 }
 
-function listFridgeContents(){
+function listFridgeContents() {
     $('.js-fridge-contents').empty();
 
-    Object.keys(game).forEach(function(prop) {
+    Object.keys(game).forEach(function (prop) {
         if(game[prop].state === 'refrigerator') {
-            var item = '<li class="js-ingredient"  data-prop="'+prop+'">' + game[prop].name + '</li>';
+            var item = '<li class="js-item"  data-prop="' + prop + '">' + game[prop].name + '</li>';
             $('.js-fridge-contents').append(item);
         }
     });
@@ -52,12 +82,12 @@ function initCabinetContents() {
     game.kraftDinner = kraftDinner();
 }
 
-function listCabinetContents(){
+function listCabinetContents() {
     $('.js-cabinet-contents').empty();
 
-    Object.keys(game).forEach(function(prop) {
-        if(game[prop].state === 'cabinet') {
-            var item = '<li class="js-ingredient"  data-prop="'+prop+'">' + game[prop].name + '</li>';
+    Object.keys(game).forEach(function (prop) {
+        if (game[prop].state === 'cabinet') {
+            var item = '<li class="js-item"  data-prop="' + prop + '">' + game[prop].name + '</li>';
             $('.js-cabinet-contents').append(item);
         }
     });
@@ -106,5 +136,9 @@ function appendWindow(str) {
 function describe(prop) {
     'use strict';
     var str = game[prop].description;
+    if( (game[prop].type === 'vessel' || game[prop].type === 'ingredient') &&
+        game[prop].state !== 'inventory') {
+        str += '  <span class="js-pickup" data-prop="' + prop + '">You can pick it up if you like.</span>';
+    }
     appendWindow(str);
 }
