@@ -113,7 +113,13 @@ function listSinkContents() {
     });
 
     if ($('.js-sink-contents').is(':empty')) {
-        $('.js-sink-contents').append('<li>A few stray drops of water.</li>');
+        var status;
+        if(game.sink.state === 'on'){
+            status = 'A stream of water running down the drain.';
+        } else {
+            status = 'A few stray drops of water.';
+        }
+        $('.js-sink-contents').append('<li>' + status + '</li>');
     }
 }
 
