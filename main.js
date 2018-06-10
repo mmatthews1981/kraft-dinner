@@ -114,7 +114,7 @@ function listSinkContents() {
 
     if ($('.js-sink-contents').is(':empty')) {
         var status;
-        if(game.sink.state === 'on'){
+        if (game.sink && game.sink.state === 'on') {
             status = 'A stream of water running down the drain.';
         } else {
             status = 'A few stray drops of water.';
@@ -139,6 +139,27 @@ function listStoveContents() {
     }
 }
 
+function listPotContents() {
+    'use strict';
+    $('.js-pot-contents').empty();
+
+    var list = [];
+
+    Object.keys(game.potContents).forEach(function (prop) {
+        if (game.potContents[prop].added) {
+            list.push(game.potContents[prop].label);
+        }
+    });
+
+    var contents = list.join(', ');
+
+    $('.js-pot-contents').append(contents);
+
+    if (list.length === 0) {
+        $('.js-pot-contents').append('The pot is empty.');
+    }
+}
+
 function initNoodlesAndCheese() {
     'use strict';
     game.noodles = noodles();
@@ -158,17 +179,6 @@ function initLocations() {
     game.cabinet = cabinet();
     game.fridge = fridge();
     game.freezer = freezer();
-}
-
-function listByType(thetype) {
-    "use strict";
-    $('.ingredients').empty();
-
-    Object.keys(game).forEach(function (prop) {
-        if (game[prop].type === thetype) {
-            console.log(prop);
-        }
-    });
 }
 
 function appendWindow(str) {
@@ -192,11 +202,11 @@ function describe(prop) {
         str += ' <span class="js-open">You can open it if you like.</span>';
     }
 
-    if (game[prop].type === 'vessel' && game[prop].state !== 'sink' ) {
+    if (game[prop].type === 'vessel' && game[prop].state !== 'sink') {
         str += ' <span class="js-into-sink" data-prop="' + prop + '">You can put it in the sink.</span>';
     }
 
-    if (game[prop].type === 'vessel' && game[prop].state !== 'stove' ) {
+    if (game[prop].type === 'vessel' && game[prop].state !== 'stove') {
         str += ' <span class="js-onto-stove" data-prop="' + prop + '">You can put it  on the stove.</span>';
     }
     appendWindow(str);

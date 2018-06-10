@@ -40,6 +40,10 @@ function pot() {
         methods: {
             onPickUp: function () {
                 appendWindow('You pick up the pot.');
+                if(!game.potContents){
+                    game.potContents = potContents();
+                    $('.js-pot-label, .js-pot-contents').show();
+                }
             },
             onOntoStove: function () {
                 appendWindow('You put the pot on the stove.');
@@ -49,6 +53,44 @@ function pot() {
             }
         }
     });
+}
+
+function potContents() {
+    'use strict';
+    return {
+        hasWater: {
+            added: false,
+            label: 'water'
+        },
+        hasButter: {
+            added: false,
+            label: 'butter'
+        },
+        hasMilk: {
+            added: false,
+            label: 'milk'
+        },
+        hasHotdogs: {
+            added: false,
+            label: 'hotdogs'
+        },
+        hasCutUpHotdogs: {
+            added: false,
+            label: 'cut up hotdogs'
+        },
+        hasCarrotsAndPeas: {
+            added: false,
+            label: 'carrots and peas'
+        },
+        hasNoodles: {
+            added: false,
+            label: 'macaroni'
+        },
+        hasCheese: {
+            added: false,
+            label: 'cheese'
+        }
+    }
 }
 
 function colander() {
