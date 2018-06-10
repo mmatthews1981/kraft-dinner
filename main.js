@@ -173,7 +173,11 @@ function listByType(thetype) {
 
 function appendWindow(str) {
     'use strict';
-    $('.js-content').append('<p>' + str + '</p>');
+    var p = '<p>' + str + '</p>';
+    $('.js-content').append(p);
+
+    //timeout and remove the message
+    $('.js-content p:last').delay(10000).fadeOut(2000);
 }
 
 function describe(prop) {
